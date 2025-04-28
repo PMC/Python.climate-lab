@@ -4,7 +4,7 @@
   <h1 align="center">Python.climate-lab</h3>
 
   <p align="center">
-    A Python project for training model on temperature data
+    A Python project for training a model on temperature data
     <br />
     <br />
   </p>
