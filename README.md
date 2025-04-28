@@ -1,10 +1,10 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
 <div align="center">
-  <h1 align="center">Iris Dataset Classifier-lab</h3>
+  <h1 align="center">Python.climate-lab</h3>
 
   <p align="center">
-    A Python project for training and testing machine learning models on the Iris dataset.
+    A Python project for training model on temperature data
     <br />
     <br />
   </p>
@@ -13,7 +13,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project uses the Iris dataset to train and evaluate machine learning models. The dataset is read from `iris.csv`, and the models are saved in `.keras` format. The project includes scripts for training (`iris_training_lab.py`).
+Formatted the jena_climate_2009_2016.csv data into 5 columns containing the "T (degC)" info.
+We are supposed to create a model that predict the next temperature of sets of 5.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -30,7 +31,7 @@ This project uses the Iris dataset to train and evaluate machine learning models
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/PMC/Python.Iris-lab.git
+   git clone https://github.com/PMC/Python.climate-lab.git
    ```
 2. Install dependencies:
    ```sh
@@ -41,10 +42,10 @@ This project uses the Iris dataset to train and evaluate machine learning models
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE -->
-## Usage
+## Usage - prepare data
 
    ```sh
-   uv run iris_training_lab.py
+   uv run format_temperature_data_as_new_csv.py
    ```
 
 
