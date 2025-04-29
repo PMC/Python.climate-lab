@@ -4,13 +4,14 @@ import os
 
 # Input and output
 data_chunks = pd.read_csv(
-    r"c:\Users\ghazkul\Downloads\jena_climate_2009_2016.csv", chunksize=4096
+    r"c:\Users\ghazkul\Downloads\jena_climate_2009_2016.csv", chunksize=5*1024
 )
-output_file_path = "formatted.csv"
+data_folder = os.path.dirname(__file__)
+output_filepath = os.path.join(data_folder, "Temperature_Celsius_5Col-2025.csv")
 
 # Remove the file if it exists (optional: clean start)
-if os.path.exists(output_file_path):
-    os.remove(output_file_path)
+if os.path.exists(output_filepath):
+    os.remove(output_filepath)
 
 write_header = True  # Initialize header flag
 
@@ -21,10 +22,10 @@ for chunk in data_chunks:
 
         for i in range(0, num_rows - 4, 5):
             record = {
-                "data_1": chunk["T (degC)"].iloc[i],
-                "data_2": chunk["T (degC)"].iloc[i + 1],
-                "data_3": chunk["T (degC)"].iloc[i + 2],
-                "data_4": chunk["T (degC)"].iloc[i + 3],
+                "sensor_1": chunk["T (degC)"].iloc[i],
+                "sensor_2": chunk["T (degC)"].iloc[i + 1],
+                "sensor_3": chunk["T (degC)"].iloc[i + 2],
+                "sensor_4": chunk["T (degC)"].iloc[i + 3],
                 "label": chunk["T (degC)"].iloc[i + 4],
             }
             records.append(record)
@@ -32,7 +33,7 @@ for chunk in data_chunks:
         if records:
             df_to_write = pd.DataFrame(records)
             df_to_write.to_csv(
-                output_file_path, mode="a", header=write_header, index=False
+                output_filepath, mode="a", header=write_header, index=False
             )
             write_header = False
     else:
@@ -41,5 +42,5 @@ for chunk in data_chunks:
         )
 
 print(
-    f"[green]Successfully wrote temperature columns to {output_file_path}[/green]"
+    f"[green]Successfully wrote temperature columns to {output_filepath}[/green]"
 )

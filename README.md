@@ -1,7 +1,7 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a id="readme-top"></a>
 <div align="center">
-  <h1 align="center">Python.climate-lab</h3>
+  <h1  align="center">Python.climate-lab</h1>
 
   <p align="center">
     A Python project for training a model on temperature data
@@ -16,7 +16,7 @@
 Formatted the jena_climate_2009_2016.csv data into 5 columns containing the "T (degC)" info.
 We are supposed to create a model that predict the next temperature of sets of 5.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -39,21 +39,22 @@ We are supposed to create a model that predict the next temperature of sets of 5
    uv sync
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- USAGE -->
 ## Usage - prepare data
 
    ```sh
-   uv run format_temperature_data_as_new_csv.py
+    uv run .\data\extract_temperature_data.py
    ```
+   to create the formated csv file needed for this project:
+   Temperature_Celsius_5Col-2025.csv
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
