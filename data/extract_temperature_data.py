@@ -4,7 +4,7 @@ import os
 
 # Input and output
 data_chunks = pd.read_csv(
-    r"c:\Users\ghazkul\Downloads\jena_climate_2009_2016.csv", chunksize=5*1024
+    r"c:\Users\ghazkul\Downloads\jena_climate_2009_2016.csv", chunksize=10240000
 )
 data_folder = os.path.dirname(__file__)
 output_filepath = os.path.join(data_folder, "Temperature_Celsius_5Col-2025.csv")
@@ -20,7 +20,7 @@ for chunk in data_chunks:
         num_rows = len(chunk)
         records = []
 
-        for i in range(0, num_rows - 4, 5):
+        for i in range(0, num_rows - 4):  # Slide by 1 row instead of 5
             record = {
                 "sensor_1": chunk["T (degC)"].iloc[i],
                 "sensor_2": chunk["T (degC)"].iloc[i + 1],
@@ -41,6 +41,4 @@ for chunk in data_chunks:
             "[yellow]Warning: 'T (degC)' column not found in this chunk. Skipping chunk.[/yellow]"
         )
 
-print(
-    f"[green]Successfully wrote temperature columns to {output_filepath}[/green]"
-)
+print(f"[green]Successfully wrote temperature columns to {output_filepath}[/green]")

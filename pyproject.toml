@@ -13,4 +13,5 @@ dependencies = [
     "graphviz",
     "rich",
     "scikit-learn>=1.0.2",
+    "matplotlib>=3.5.3",
 ]
