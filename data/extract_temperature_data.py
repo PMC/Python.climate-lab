@@ -24,7 +24,7 @@ output_filepath = os.path.join(data_folder, "Temperature_Celsius_5Col-2025.csv")
 
 # Remove old output file if it exists
 if os.path.exists(output_filepath):
-    print(f"Removing old output file: {output_filepath}")
+    print(f"Removing old output file: [blue]{output_filepath}[/blue]")
     os.remove(output_filepath)
 
 write_header = True
