@@ -2,8 +2,12 @@ from rich import print
 import pandas as pd
 import os
 
+# Output file will contain 5 columns:
+# Row 1: 1, 2, 3, 4, 5
+# Row 2: 5, 6, 7, 8, 9 (note the overlapping value 5)
+# Row 3: 9, 10, 11, 12, 13 (again overlapping on 9)
+
 chunksize = 16384
-chunk_index = 1
 
 # Input Data and output path
 csv_path = r"c:\Users\ghazkul\Downloads\jena_climate_2009_2016.csv"
@@ -20,13 +24,13 @@ output_filepath = os.path.join(data_folder, "Temperature_Celsius_5Col-2025.csv")
 
 # Remove old output file if it exists
 if os.path.exists(output_filepath):
-    print(f"[green]Removing old output file: {output_filepath}[/green]")
+    print(f"Removing old output file: {output_filepath}")
     os.remove(output_filepath)
 
 write_header = True
 buffer = pd.DataFrame()  # Stores the tail of the previous chunk
 
-print("[green]Processing Data[/green]: ", end="")
+print("Processing Data: ", end="")
 
 for chunk in data_chunks:
     if "T (degC)" not in chunk.columns:
@@ -40,7 +44,7 @@ for chunk in data_chunks:
     chunk = chunk.reset_index(drop=True)
 
     records = []
-    for i in range(0, len(chunk) - 4):
+    for i in range(0, len(chunk) - 4, 4):
         window = chunk["T (degC)"].iloc[i : i + 5].tolist()
         record = {
             "sensor_1": window[0],
@@ -59,7 +63,6 @@ for chunk in data_chunks:
 
     # Store last 4 rows for next chunk
     buffer = chunk.iloc[-4:].copy()
-    chunk_index += 1  # Increment progress tracker
 
 print("")
 print("")
