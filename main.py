@@ -9,27 +9,37 @@ from sklearn.preprocessing import OneHotEncoder
 def main():
     data = pd.read_csv(f"data\Temperature_Celsius_5Col-2025.csv")
 
-    # scale complete DATA using MinMaxScaler, maybe we should scale on X and Y separately
+    # We should scale on X and Y separately
     # need to preserve negative values ? MinMaxScaler(feature_range=(-1, 1)).
-    scaler = MinMaxScaler()
-    scaler.fit(data)
-
-    data_scaled = scaler.transform(data)
-    data_scaled = pd.DataFrame(data_scaled, columns=data.columns)
-    print(data_scaled)
+    x_scaler = MinMaxScaler()
+    y_scaler = MinMaxScaler()
 
     # split the data into training and testing data
-    x = data_scaled.drop(columns=["label"])
-    y = data_scaled["label"]
+    X = data.drop(columns=["label"])
+    y = data["label"]
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-    print("###")
-    print(x_train)
-    print("###")
-    print(y_train)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-    # plt.plot(y)
-    # plt.show()
+    # scale inputs (X)
+    X_train_scaled = x_scaler.fit_transform(X_train)
+    X_test_scaled = x_scaler.transform(X_test)
+
+    # Optionally, scale outputs (y)
+    y_train_scaled = y_scaler.fit_transform(y_train.values.reshape(-1, 1))
+    y_test_scaled = y_scaler.transform(y_test.values.reshape(-1, 1))
+
+    # if keras need a dataframe then use:
+    # X_train_scaled_df = pd.DataFrame(X_train_scaled, columns=X.columns)
+
+    # print("###")
+    print(X_train_scaled)
+    print("###")
+    print(y_train_scaled)
+    # print("###")
+    # print(y_train)
+
+    plt.plot(X_test_scaled)
+    plt.show()
 
 
 if __name__ == "__main__":
