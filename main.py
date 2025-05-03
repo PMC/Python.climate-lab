@@ -17,10 +17,10 @@ def main():
     data_scaled = pd.DataFrame(data_scaled, columns=data.columns)
     print(data_scaled)
 
+    # split the data into training and testing data
     x = data_scaled.drop(columns=["label"])
     y = data_scaled["label"]
 
-    # split the data into training and testing data
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
     print("###")
     print(x_train)
