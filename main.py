@@ -24,9 +24,11 @@ def main():
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
     print("###")
     print(x_train)
+    print("###")
+    print(y_train)
 
-    plt.plot(y)
-    plt.show()
+    # plt.plot(y)
+    # plt.show()
 
 
 if __name__ == "__main__":
