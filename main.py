@@ -10,6 +10,7 @@ def main():
     data = pd.read_csv(f"data\Temperature_Celsius_5Col-2025.csv")
 
     # scale complete DATA using MinMaxScaler, maybe we should scale on X and Y separately
+    # need to preserve negative values ? MinMaxScaler(feature_range=(-1, 1)).
     scaler = MinMaxScaler()
     scaler.fit(data)
 
