@@ -30,6 +30,12 @@ def main():
     # plt.plot(X_test_scaled)
     # plt.show()
 
+    # example of decoding test data
+    dummy = np.zeros((X_test.shape[0], 1))
+    x_patched = np.hstack((X_test, dummy))
+    x_df = pd.DataFrame(scaler.inverse_transform(x_patched), columns=data.columns)
+    print(x_df)
+
 
 if __name__ == "__main__":
     main()
