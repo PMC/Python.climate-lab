@@ -2,18 +2,31 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
 
 
 def main():
     data = pd.read_csv(f"data\Temperature_Celsius_5Col-2025.csv")
 
-    plt.plot(data)
-    plt.show()
+    # scale complete DATA using MinMaxScaler, maybe we should scale on X and Y separately
     scaler = MinMaxScaler()
-    print("did i plot")
+    scaler.fit(data)
 
-    # data_array = np.array(datal "T (deach"1)
-    # str(object='') -> str str(byt
+    data_scaled = scaler.transform(data)
+    data_scaled = pd.DataFrame(data_scaled, columns=data.columns)
+    print(data_scaled)
+
+    x = data_scaled.drop(columns=["label"])
+    y = data_scaled["label"]
+
+    # split the data into training and testing data
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+    print("###")
+    print(x_train)
+
+    plt.plot(y)
+    plt.show()
 
 
 if __name__ == "__main__":
