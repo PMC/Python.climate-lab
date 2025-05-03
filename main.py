@@ -7,7 +7,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 
 def main():
-    data = pd.read_csv(f"data\Temperature_Celsius_5Col-2025.csv")
+    data = pd.read_csv(r"data\Temperature_Celsius_5Col-2025.csv")
 
     # scale the whole dataset
     scaler = MinMaxScaler().fit(data)
