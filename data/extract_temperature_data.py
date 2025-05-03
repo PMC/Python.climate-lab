@@ -70,12 +70,14 @@ print(
     f"[green]Successfully wrote temperature data to csv file:[/green] [blue]{output_filepath}[/blue]"
 )
 
-# Optional: Print the first few rows of the output file to verify
-print("\n[bold green]First few rows of the output file:[/bold green]")
+# Print the few first and last rows of the output file
 try:
     output_df = pd.read_csv(output_filepath)
-    print(output_df.head(5).to_markdown(index=False))
-    print("\n[bold green]Last few rows of the output file:[/bold green]")
-    print(output_df.tail(5).to_markdown(index=False))
 except FileNotFoundError:
     print("[red]Could not read the output file to verify.[/red]")
+
+print("\n[bold green]First few rows of the output file:[/bold green]")
+print(output_df.head(5).to_markdown(index=False))
+print("\n[bold green]Last few rows of the output file:[/bold green]")
+print(output_df.tail(5).to_markdown(index=False))
+print("")
